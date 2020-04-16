@@ -553,14 +553,14 @@ int _start(int argc, char **argv) {
                     unsigned char *pElfBuffer = NULL;
                     unsigned int uiElfSize = 0;
 
-                    LoadFileToMem(&private_data, CAFE_OS_SD_PATH WIIU_PATH "/apps/homebrew_launcher/homebrew_launcher.elf", &pElfBuffer, &uiElfSize);
+                    LoadFileToMem(&private_data, SD_LOADER_PATH, &pElfBuffer, &uiElfSize);
 
                     if(!pElfBuffer) {
-                        private_data.OSFatal("Failed to load homebrew_launcher.elf");
+                        private_data.OSFatal("Failed to load elf");
                     } else {
                         MAIN_ENTRY_ADDR = load_elf_image(&private_data, pElfBuffer);
                         if(MAIN_ENTRY_ADDR == 0) {
-                            private_data.OSFatal("Failed to load homebrew_launcher.elf");
+                            private_data.OSFatal("Failed to load elf");
                         } else {
                             private_data.MEMFreeToDefaultHeap(pElfBuffer);
                         }
@@ -585,10 +585,10 @@ int _start(int argc, char **argv) {
 
     int ret = ( (int (*)(int, char **))(*(unsigned int*)OS_SPECIFICS->addr_OSTitle_main_entry) )(argc, argv);
 
-    //! if an application returns and was an RPX launch then launch HBL again
-    if(MAIN_ENTRY_ADDR == 0xC001C0DE) {
-        private_data.SYSRelaunchTitle(0, 0);
-        private_data.exit(0);
-    }
+    // //! if an application returns and was an RPX launch then launch HBL again
+    // if(MAIN_ENTRY_ADDR == 0xC001C0DE) {
+    //     private_data.SYSRelaunchTitle(0, 0);
+    //     private_data.exit(0);
+    // }
     return ret;
 }
