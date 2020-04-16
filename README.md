@@ -1,5 +1,5 @@
 # Configurable Payload
-[homebrew_launcher_installer](https://github.com/wiiu-env/homebrew_launcher_installer) and [haxchi's](https://github.com/FIX94/haxchi)  
+[homebrew_launcher_installer](https://github.com/wiiu-env/homebrew_launcher_installer) and [haxchi's](https://github.com/FIX94/haxchi) config combined  
 
 # Usage
 Meant to be used with the  [payload_loader](https://github.com/wiiu-env/payload_loader).  
